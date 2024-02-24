@@ -25,13 +25,4 @@ def beeps(file_path, one_beep_time, morse):
             else:
                 time.sleep(one_beep_time * 0.41)
         time.sleep(one_beep_time * 6)
-    # for string in morse:
-    #     for char in string:
-    #         if char == ".":
-    #             play_sound(file_path, one_beep_time)
-    #             time.sleep(one_beep_time)
-    #         elif char == "-":
-    #             play_sound(file_path, one_beep_time * 3)
-    #             time.sleep(one_beep_time)
-    #         else:
-    #             time.sleep(one_beep_time)
+

@@ -6,15 +6,16 @@ massa_list = [0] # massa_list cannot start empty
 beep_list = []
 space_list = []
 
-
+# Function takes in forward slashes and 
 def morse_to_english(morse_str):
 
     if len(morse_str) == 0:
         return ""
+
     print(morse_str)
     morse_str = morse_str.replace("*", "")
     print(morse_str)
-    morse_str += '////'
+    morse_str += '////' 
     pointer = 0
     final = ""
     current_word = ""
@@ -82,6 +83,7 @@ morse_dic_reverse = {'.-': 'a',
                      '.----.': "'",
                      '-..-.': '/'}
 
+# Initialize the port we want to listen from
 arduino = serial.Serial(port='/dev/tty.usbserial-10',  baudrate=9600, timeout=.1)
 
 def write_read(x):
@@ -95,6 +97,7 @@ while True:
     value = write_read(str(2))
     if "space" in value:
         if massa_list[len(massa_list)-1] < 0:
+            
             # Adds spaces together if the last one was a space
             massa_list[len(massa_list)-1] += int(re.findall("(\d+)", value)[0]) * -1
             space_list[len(space_list)-1] += int(re.findall("(\d+)", value)[0]) * -1

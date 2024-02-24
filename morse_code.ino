@@ -15,14 +15,13 @@ bool playing_space = false;
 
 bool listen_for_sound() {
   int sound_value = 0;
-    
+
   for (int i = 0; i < 32; i++) { 
     sound_value += analogRead(sound_sensor);  
-  
   }
  
   sound_value >>= 5; //bitshift operation 
- 
+
   if (sound_value > threshold_volume) { 
 //    Serial.println("Loud sound");
     digitalWrite(msg_led_pin, HIGH);
@@ -61,7 +60,8 @@ void listening_mode_control() {
 
  
 void setup() {
-  Serial.begin(9600); //begin Serial Communication
+//begin Serial Communication, necessary to communicate with Python Script
+  Serial.begin(9600); 
   Serial.setTimeout(1); 
 
   pinMode(msg_led_pin, OUTPUT);
@@ -74,7 +74,6 @@ void setup() {
   
 }
 
-// REMEMBER TO RESET ARRAY SIZE
 void loop() {
   digitalWrite(msg_led_pin, LOW);
 
@@ -103,6 +102,7 @@ void loop() {
     else if (hear_sound == true && first_run == false && playing_space == true) {
       playing_space = false;
       first_run = true;
+      
       Serial.print("Length of space: ");
       Serial.println(t);
       t = 0;
@@ -124,8 +124,8 @@ void loop() {
       t = 0;
     }
     // increment time
-    t++; 
-    delay(25); /
+    ++t; 
+    delay(25); 
 
   }
     Serial.print("Idle...\n");
